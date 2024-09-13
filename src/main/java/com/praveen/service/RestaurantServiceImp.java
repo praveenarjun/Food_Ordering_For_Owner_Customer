@@ -108,12 +108,16 @@ public class RestaurantServiceImp implements RestaurantService{
         }
         else user.getFavorites().add(dto);
 
-        user.
-        return null;
+        userRepository.save(user);
+        return dto;
     }
 
     @Override
     public Restaurant updateRestaurantStatus(Long id) throws Exception {
-        return null;
+        Restaurant restaurant = findRestaurantById(id);
+        restaurant.setOpen(!restaurant.isOpen());
+
+        return restaurantRepository.save(restaurant);
     }
 }
+
